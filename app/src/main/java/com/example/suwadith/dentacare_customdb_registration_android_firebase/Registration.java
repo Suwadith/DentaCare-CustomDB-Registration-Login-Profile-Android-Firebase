@@ -20,6 +20,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.StorageReference;
 
 public class Registration extends AppCompatActivity implements View.OnClickListener{
 
@@ -92,6 +93,10 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
             Toast.makeText(this, "Please enter a preferred password", Toast.LENGTH_SHORT).show();
             return;
         }
+
+
+        /**Have to implement the DeviceID cross check**/
+
 
         //Giving the ProgressDialog a message to display while the action in is progress
         progressDialog.setMessage("In Progress...");

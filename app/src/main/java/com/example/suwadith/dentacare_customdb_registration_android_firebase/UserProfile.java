@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 public class UserProfile extends AppCompatActivity implements View.OnClickListener {
 
@@ -57,5 +59,12 @@ public class UserProfile extends AppCompatActivity implements View.OnClickListen
             //Switches to login Activity
             startActivity(new Intent(this, Login.class));
         }
+    }
+
+
+    private void changeImage(){
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        StorageReference storageRef = storage.getReference();
+
     }
 }
