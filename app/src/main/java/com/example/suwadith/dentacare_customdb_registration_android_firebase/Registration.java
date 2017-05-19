@@ -117,6 +117,7 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
                 if(task.isSuccessful()){
                     FirebaseDatabase database = FirebaseDatabase.getInstance();
                     DatabaseReference users = database.getReference("users");
+                    users.child(username).child("Username").setValue(username);
                     users.child(username).child("Email").setValue(email);
                     users.child(username).child("Password").setValue(password);
                     users.child(username).child("DeviceID").setValue(deviceID);
