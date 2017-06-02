@@ -3,6 +3,7 @@ package com.example.suwadith.dentacare_customdb_registration_android_firebase;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -13,9 +14,11 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -24,7 +27,7 @@ public class UserProfile extends AppCompatActivity implements View.OnClickListen
     private FirebaseAuth firebaseAuth;
 
     private ImageView userPic;
-    private TextView username;
+    private TextView userName;
     private Button changeImageButton;
     private TextView userEmail;
     private TextView userDeviceID;
@@ -48,10 +51,10 @@ public class UserProfile extends AppCompatActivity implements View.OnClickListen
             startActivity(new Intent(this, Login.class));
         }
 
-        FirebaseUser user = firebaseAuth.getCurrentUser();
+        final FirebaseUser user = firebaseAuth.getCurrentUser();
 
         userPic = (ImageView) findViewById(R.id.userPic);
-        username = (TextView) findViewById(R.id.username);
+        userName = (TextView) findViewById(R.id.username);
         changeImageButton = (Button) findViewById(R.id.changeImageButton);
         userDeviceID = (TextView) findViewById(R.id.userDeviceID);
         userAddress = (TextView) findViewById(R.id.userAddress);
@@ -64,9 +67,36 @@ public class UserProfile extends AppCompatActivity implements View.OnClickListen
         //Setting the userEmail field text to show the logged in user's email ID
         userEmail.setText(user.getEmail());
 
-        final String email = userEmail.getText().toString().trim();
+        final String email = user.getEmail();
 
-        /*username.setText(user.)*/
+        final Query userQuery = users.orderByChild("Email");
+
+        userQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for(DataSnapshot post : dataSnapshot.getChildren() ){
+                    if(post.child("Email").getValue().equals(email)){
+                        Log.d("Output", "Found");
+                        final String username = post.getKey().toString();
+                        Log.d("Output", username);
+                        userName.setText(username);
+                        final String deviceID = post.child("DeviceID").getValue().toString();
+                        userDeviceID.setText(deviceID);
+                        final String address = post.child("Address").getValue().toString();
+                        userAddress.setText(address);
+                    }else{
+                       Log.d("Output", "Failure");
+                    }
+
+                    Log.d("Output", post.child("Email").toString());
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
         logoutButton = (Button) findViewById(R.id.logoutButton);
 
@@ -100,7 +130,6 @@ public class UserProfile extends AppCompatActivity implements View.OnClickListen
 
         FirebaseStorage imageStorage = FirebaseStorage.getInstance();
         StorageReference storageRef = imageStorage.getReferenceFromUrl("gs://dentacare-47bea.appspot.com");
-
 
 
     }
