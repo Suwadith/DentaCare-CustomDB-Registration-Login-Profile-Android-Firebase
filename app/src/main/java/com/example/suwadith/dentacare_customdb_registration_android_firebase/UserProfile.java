@@ -160,7 +160,6 @@ public class UserProfile extends AppCompatActivity implements View.OnClickListen
             i.setType("image/*");
             i.setAction(Intent.ACTION_GET_CONTENT);
             startActivityForResult(Intent.createChooser(i, "Select Picture"), 100);
-
         }
     }
 
@@ -196,6 +195,7 @@ public class UserProfile extends AppCompatActivity implements View.OnClickListen
             });
 
         }
+        startActivity(new Intent(this, UserProfile.class));
     }
 
     private void changeImage(){
