@@ -9,7 +9,7 @@
     <LinearLayout
         android:layout_width="410dp"
         android:layout_height="600dp"
-        android:paddingTop="80dp"
+        android:paddingTop="100dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent">
 
@@ -28,6 +28,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingTop="30dp"
+            android:paddingBottom="20dp"
             android:layout_gravity="center" />
 
         <Button
@@ -38,13 +39,14 @@
             android:layout_gravity="center" />
 
         <TextView
-            android:text="Don't have an Account? Click here to Register"
             android:id="@+id/registerRedirect"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingTop="30dp"
             android:layout_gravity="center"
-            />
+            android:paddingTop="30dp"
+            android:text="Don't have an Account? Click here to Register"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
     </LinearLayout>
 

@@ -67,13 +67,14 @@
             android:layout_gravity="center" />
 
         <TextView
-            android:text="Already Registered? Click here to Login"
             android:id="@+id/loginRedirect"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingTop="30dp"
             android:layout_gravity="center"
-            />
+            android:paddingTop="30dp"
+            android:text="Already Registered? Click here to Login"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
     </LinearLayout>
 
