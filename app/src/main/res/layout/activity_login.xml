@@ -14,21 +14,23 @@
         app:layout_constraintBottom_toBottomOf="parent">
 
         <EditText
-            android:hint="Email"
             android:id="@+id/editEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:paddingTop="30dp" />
+            android:hint="Email"
+            android:paddingTop="30dp"
+            android:textAlignment="center" />
 
         <EditText
-            android:hint="Password"
             android:id="@+id/editPassword"
-            android:inputType="textPassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:hint="Password"
+            android:inputType="textPassword"
             android:paddingTop="30dp"
-            android:layout_gravity="center" />
+            android:textAlignment="center" />
 
         <Button
             android:text="Login"
